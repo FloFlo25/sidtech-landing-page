@@ -12,8 +12,6 @@ type TabProps = {
 type PositionType = { left: number; width: number; opacity: number };
 type CursorProps = { position: PositionType };
 
-// ${selected && "bg-[#526827] text-[#A8DA67]"
-
 const Tab = ({ children, selected = false, setPosition }: TabProps) => {
   const ref = useRef<HTMLButtonElement>(null);
 
@@ -26,12 +24,12 @@ const Tab = ({ children, selected = false, setPosition }: TabProps) => {
         const { width } = ref.current.getBoundingClientRect();
 
         setPosition({
-          width,
+          width: screen.width > 640 ? width * 1.35 : width * 1.3,
           opacity: 1,
           left: ref.current.offsetLeft,
         });
       }}
-      className={`${atma.className} relative z-10 rounded-full px-3 py-1 uppercase md:text-[2rem]`}
+      className={`${atma.className} relative z-10 rounded-full px-3 py-1 uppercase text-white md:text-[2rem]`}
     >
       {children}
     </button>
@@ -42,7 +40,7 @@ const Cursor = ({ position }: CursorProps) => {
   return (
     <motion.div
       animate={position}
-      className="absolute z-0 h-8 scale-110 rounded-full bg-[#526827] mix-blend-normal md:h-14 md:scale-100"
+      className="absolute z-0 h-8 rounded-full bg-[#526827] mix-blend-normal md:h-14"
     ></motion.div>
   );
 };
@@ -55,7 +53,7 @@ const Navbar = () => {
   });
 
   return (
-    <nav className="absolute left-[calc(50%_-_225px)] top-8 z-50 flex w-fit scale-75 gap-8 rounded-full border-4 border-solid border-[#526827] bg-[#283311] px-4 py-3 text-white md:left-[calc(50%_-_375px)] md:scale-100">
+    <nav className="sticky top-8 m-[45px_auto_-115px] flex scale-[0.75] rounded-full border-4 border-solid border-[#526827] bg-[#283311] px-4 py-2 md:m-[45px_auto_-125px] md:gap-16">
       <Tab setPosition={setPosition}>Home</Tab>
       <Tab setPosition={setPosition}>Services</Tab>
       <Tab setPosition={setPosition}>Projects</Tab>
