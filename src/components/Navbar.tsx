@@ -2,6 +2,7 @@
 import { type Dispatch, type SetStateAction, useRef, useState } from "react";
 import { atma } from "~/app/fonts";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 type TabProps = {
   children: React.ReactNode;
@@ -13,6 +14,7 @@ type PositionType = { left: number; width: number; opacity: number };
 type CursorProps = { position: PositionType };
 
 const Tab = ({ children, selected = false, setPosition }: TabProps) => {
+  const router = useRouter();
   const ref = useRef<HTMLButtonElement>(null);
 
   return (
@@ -28,6 +30,20 @@ const Tab = ({ children, selected = false, setPosition }: TabProps) => {
           opacity: 1,
           left: ref.current.offsetLeft,
         });
+
+        if (ref.current.innerHTML === "Home") {
+          router.push("/");
+          return;
+        }
+        if (ref.current.innerHTML === "Services") {
+          router.push("#services");
+          return;
+        }
+        if (ref.current.innerHTML === "Projects") {
+          router.push("#projects");
+          return;
+        }
+        if (ref.current.innerHTML === "Reviews") router.push("#reviews");
       }}
       className={`${atma.className} relative z-10 rounded-full px-3 py-1 uppercase text-white md:text-[2rem]`}
     >

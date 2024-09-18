@@ -1,15 +1,22 @@
+"use client";
+
 import Navbar from "~/components/Navbar";
 import FirstPage from "./pages/FirstPage";
+import { useState } from "react";
+import ServicesPage from "./pages/ServicesPage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ReviewsPage from "./pages/ReviewsPage";
 
 export default function HomePage() {
-  return (
-    <main className="flex flex-col overflow-y-hidden bg-[#0E1206]">
-      <Navbar />
+  const [latestPageInView, setLatestPageInView] = useState(null);
 
+  return (
+    <main className="flex flex-col bg-[#0E1206] contain-paint">
+      <Navbar />
       <FirstPage />
-      <div className="h-screen w-screen bg-red-600"></div>
-      <div className="h-screen w-screen bg-red-500"></div>
-      <div className="h-screen w-screen bg-red-400"></div>
+      <ServicesPage />
+      <ProjectsPage />
+      <ReviewsPage />
     </main>
   );
 }
