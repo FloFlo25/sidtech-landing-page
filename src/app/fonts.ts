@@ -1,3 +1,3 @@
 import { Atma } from "next/font/google";
 
-export const atma = Atma({ weight: "500", subsets: ["latin"] });
+export const atma = Atma({ weight: ["500", "700"], subsets: ["latin"] });
