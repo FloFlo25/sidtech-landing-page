@@ -8,6 +8,9 @@ export default {
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
       },
+      screens: {
+        "3xl": '1920px'
+      }
     },
   },
   plugins: [],
